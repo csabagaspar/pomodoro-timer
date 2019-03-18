@@ -14,7 +14,7 @@ const phases = {
     title: 'Pomodoro'
   },
   'short-break': {
-    seconds: 5,
+    seconds: 5*60,
     title: 'Short break'
   },
   'long-break': {
