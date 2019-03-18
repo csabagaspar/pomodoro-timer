@@ -80,7 +80,11 @@ function CountDownTimer() {
 
   function handleSetClick(phase) {
     clearInterval(timerRef.current)
-    setState({seconds: phase.seconds, title: phase.title, running: false})
+    setState({
+      seconds: phase.seconds,
+      title: phase.title,
+      running: false
+    })
   }
 
   function format(seconds) {
@@ -94,15 +98,11 @@ function CountDownTimer() {
 
   return (
     <div style={{textAlign: 'center'}}>
-      <button onClick={() => handleSetClick(phases.pomodoro)} style={buttonStyles}>
-        Pomodoro
-      </button>
-      <button onClick={() => handleSetClick(phases['short-break'])} style={buttonStyles}>
-        Short break
-      </button>
-      <button onClick={() => handleSetClick(phases['long-break'])} style={buttonStyles}>
-        Long break
-      </button>
+      { Object.keys(phases).map( phase => (
+        <button key={phase} onClick={() => handleSetClick(phases[phase])} style={buttonStyles}>
+          {phases[phase].title}
+        </button>
+      ))}
       <label
         style={{
           fontSize: '5em',
