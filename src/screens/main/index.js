@@ -8,30 +8,49 @@ const buttonStyles = {
   margin: 5,
   width: 200,
 }
+const phases = {
+  pomodoro:  {
+    seconds: 25*60,
+    title: 'Pomodoro'
+  },
+  'short-break': {
+    seconds: 5,
+    title: 'Short break'
+  },
+  'long-break': {
+    seconds: 15*60,
+    title: 'Long break'
+  },
+}
 
 function CountDownTimer() {
-  const [{seconds, running}, setState] = useReducer(
+  const [{seconds, title, running}, setState] = useReducer(
     (state, newState) => ({
       ...state,
       ...newState,
     }),
     {
       running: false,
-      seconds: 25*60,
+      seconds: 0,
+      title: ''
     },
   )
 
   const timerRef = useRef(null)
 
   useEffect(() => {
+    setState({
+      seconds: phases.pomodoro.seconds,
+      title: phases.pomodoro.title
+    })
     Notification.requestPermission()
+
     return () => clearInterval(timerRef.current)
   }, [])
 
   useEffect(() => {
-
     const [m,s] = format(seconds)
-    document.title = `${m}:${s} - Pomodoro Timer`
+    document.title = `${m}:${s} - ${title}`
 
   }, [seconds])
 
@@ -55,13 +74,13 @@ function CountDownTimer() {
   }
 
   function alert(){
-    new Notification("The time is over!", {
+    new Notification(`${title} is over!`, {
     })
   }
 
-  function handleSetClick(seconds) {
+  function handleSetClick(phase) {
     clearInterval(timerRef.current)
-    setState({seconds, running: false})
+    setState({seconds: phase.seconds, title: phase.title, running: false})
   }
 
   function format(seconds) {
@@ -75,13 +94,13 @@ function CountDownTimer() {
 
   return (
     <div style={{textAlign: 'center'}}>
-      <button onClick={() => handleSetClick(25*60)} style={buttonStyles}>
+      <button onClick={() => handleSetClick(phases.pomodoro)} style={buttonStyles}>
         Pomodoro
       </button>
-      <button onClick={() => handleSetClick(10)} style={buttonStyles}>
+      <button onClick={() => handleSetClick(phases['short-break'])} style={buttonStyles}>
         Short break
       </button>
-      <button onClick={() => handleSetClick(15*60)} style={buttonStyles}>
+      <button onClick={() => handleSetClick(phases['long-break'])} style={buttonStyles}>
         Long break
       </button>
       <label
@@ -92,7 +111,7 @@ function CountDownTimer() {
       >
         {remainingTime}
       </label>
-      <button onClick={handleRunClick} style={buttonStyles}>
+      <button onClick={handleRunClick} style={buttonStyles} disabled={seconds===0}>
         {running ? 'Stop' : 'Start'}
       </button>
     </div>
