@@ -1,7 +1,7 @@
 {
   "name": "apps",
   "version": "0.1.0",
-  "homepage": "https://csabagaspar.github.io/tomato-timer",
+  "homepage": "https://csabagaspar.github.io/pomodoro-timer",
   "dependencies": {
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
