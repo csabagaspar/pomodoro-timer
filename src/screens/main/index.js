@@ -1,4 +1,6 @@
 import React, {useReducer, useEffect, useRef} from 'react'
+import 'react-sortable-tree/style.css'
+import SortableTree from 'react-sortable-tree'
 
 const buttonStyles = {
   border: '1px solid #ccc',
@@ -9,22 +11,22 @@ const buttonStyles = {
   width: 200,
 }
 const phases = {
-  pomodoro:  {
-    seconds: 25*60,
-    title: 'Pomodoro'
+  pomodoro: {
+    seconds: 25 * 60,
+    title: 'Pomodoro',
   },
   'short-break': {
-    seconds: 5*60,
-    title: 'Short break'
+    seconds: 5 * 60,
+    title: 'Short break',
   },
   'long-break': {
-    seconds: 15*60,
-    title: 'Long break'
+    seconds: 15 * 60,
+    title: 'Long break',
   },
 }
 
 function CountDownTimer() {
-  const [{seconds, title, running}, setState] = useReducer(
+  const [{seconds, title, running, treeData}, setState] = useReducer(
     (state, newState) => ({
       ...state,
       ...newState,
@@ -32,7 +34,8 @@ function CountDownTimer() {
     {
       running: false,
       seconds: 0,
-      title: ''
+      title: '',
+      treeData: [{title: 'todo1'}, {title: 'todo2'}],
     },
   )
 
@@ -41,7 +44,7 @@ function CountDownTimer() {
   useEffect(() => {
     setState({
       seconds: phases.pomodoro.seconds,
-      title: phases.pomodoro.title
+      title: phases.pomodoro.title,
     })
     Notification.requestPermission()
 
@@ -49,9 +52,8 @@ function CountDownTimer() {
   }, [])
 
   useEffect(() => {
-    const [m,s] = format(seconds)
+    const [m, s] = format(seconds)
     document.title = `${m}:${s} - ${title}`
-
   }, [seconds])
 
   function handleRunClick() {
@@ -73,9 +75,8 @@ function CountDownTimer() {
     setState({running: !running})
   }
 
-  function alert(){
-    new Notification(`${title} is over!`, {
-    })
+  function alert() {
+    new Notification(`${title} is over!`, {})
   }
 
   function handleSetClick(phase) {
@@ -83,23 +84,27 @@ function CountDownTimer() {
     setState({
       seconds: phase.seconds,
       title: phase.title,
-      running: false
+      running: false,
     })
   }
 
   function format(seconds) {
-    const m = Math.floor(seconds % 3600 / 60)
-    const s = Math.floor(seconds % 3600 % 60)
-    return [`${m < 10 ? '0': ''}${m}`,`${s < 10 ? '0': ''}${s}`]
+    const m = Math.floor((seconds % 3600) / 60)
+    const s = Math.floor((seconds % 3600) % 60)
+    return [`${m < 10 ? '0' : ''}${m}`, `${s < 10 ? '0' : ''}${s}`]
   }
 
-  const [m,s] = format(seconds)
+  const [m, s] = format(seconds)
   const remainingTime = `${m}m:${s}s`
 
   return (
     <div style={{textAlign: 'center'}}>
-      { Object.keys(phases).map( phase => (
-        <button key={phase} onClick={() => handleSetClick(phases[phase])} style={buttonStyles}>
+      {Object.keys(phases).map(phase => (
+        <button
+          key={phase}
+          onClick={() => handleSetClick(phases[phase])}
+          style={buttonStyles}
+        >
           {phases[phase].title}
         </button>
       ))}
@@ -111,9 +116,19 @@ function CountDownTimer() {
       >
         {remainingTime}
       </label>
-      <button onClick={handleRunClick} style={buttonStyles} disabled={seconds===0}>
+      <button
+        onClick={handleRunClick}
+        style={buttonStyles}
+        disabled={seconds === 0}
+      >
         {running ? 'Stop' : 'Start'}
       </button>
+      <div style={{height: 400}}>
+        <SortableTree
+          treeData={treeData}
+          onChange={treeData => setState({treeData})}
+        />
+      </div>
     </div>
   )
 }
