@@ -1,6 +1,6 @@
 import React, {useReducer, useEffect, useRef} from 'react'
 import 'react-sortable-tree/style.css'
-import SortableTree from 'react-sortable-tree'
+import SortableTree, {changeNodeAtPath} from 'react-sortable-tree'
 
 const buttonStyles = {
   border: '1px solid #ccc',
@@ -35,7 +35,15 @@ function CountDownTimer() {
       running: false,
       seconds: 0,
       title: '',
-      treeData: [{title: 'todo1'}, {title: 'todo2'}],
+      treeData: [
+        {title: 'todo 1', estimated: 3},
+        {
+          title: 'todo 2',
+          estimated: 2,
+          expanded: true,
+          children: [{title: 'todo 2.1', estimated: 4}],
+        },
+      ],
     },
   )
 
@@ -97,6 +105,7 @@ function CountDownTimer() {
   const [m, s] = format(seconds)
   const remainingTime = `${m}m:${s}s`
 
+  const getNodeKey = ({treeIndex}) => treeIndex
   return (
     <div style={{textAlign: 'center'}}>
       {Object.keys(phases).map(phase => (
@@ -127,6 +136,59 @@ function CountDownTimer() {
         <SortableTree
           treeData={treeData}
           onChange={treeData => setState({treeData})}
+          generateNodeProps={({node, path}) => ({
+            title: (
+              <>
+                <input
+                  style={{fontSize: '1.1rem'}}
+                  value={node.title}
+                  onChange={event => {
+                    const title = event.target.value
+                    setState({
+                      treeData: changeNodeAtPath({
+                        treeData: treeData,
+                        path,
+                        getNodeKey,
+                        newNode: {...node, title},
+                      }),
+                    })
+                  }}
+                />
+                <input
+                  style={{fontSize: '1.1rem'}}
+                  value={node.estimated}
+                  type="number"
+                  onChange={event => {
+                    const estimated = event.target.value
+                    setState({
+                      treeData: changeNodeAtPath({
+                        treeData: treeData,
+                        path,
+                        getNodeKey,
+                        newNode: {...node, estimated},
+                      }),
+                    })
+                  }}
+                />
+                <input
+                  style={{fontSize: '1.1rem'}}
+                  value={node.completed}
+                  type="number"
+                  onChange={event => {
+                    const completed = event.target.value
+                    setState({
+                      treeData: changeNodeAtPath({
+                        treeData: treeData,
+                        path,
+                        getNodeKey,
+                        newNode: {...node, completed},
+                      }),
+                    })
+                  }}
+                />
+              </>
+            ),
+          })}
         />
       </div>
     </div>
