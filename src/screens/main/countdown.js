@@ -1,5 +1,4 @@
 import React, {useReducer, useEffect, useRef} from 'react'
-import 'react-sortable-tree/style.css'
 
 const buttonStyles = {
   border: '1px solid #ccc',
