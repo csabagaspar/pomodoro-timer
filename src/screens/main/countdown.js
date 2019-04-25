@@ -1,4 +1,5 @@
 import React, {useReducer, useEffect, useRef} from 'react'
+import {useNotification} from './useNotification'
 
 const buttonStyles = {
   border: '1px solid #ccc',
@@ -24,6 +25,7 @@ const phases = {
 }
 
 export function CountDownTimer() {
+  const [alert] = useNotification()
   const [{seconds, title, running}, setState] = useReducer(
     (state, newState) => ({
       ...state,
@@ -43,7 +45,6 @@ export function CountDownTimer() {
       seconds: phases.pomodoro.seconds,
       title: phases.pomodoro.title,
     })
-    Notification.requestPermission()
 
     return () => clearInterval(timerRef.current)
   }, [])
@@ -63,17 +64,13 @@ export function CountDownTimer() {
       timerRef.current = setInterval(() => {
         if (currentTime === 0) {
           clearInterval(timerRef.current)
-          alert()
+          alert(title)
         } else {
           setState({seconds: --currentTime})
         }
       }, 1000)
     }
     setState({running: !running})
-  }
-
-  function alert() {
-    new Notification(`${title} is over!`, {})
   }
 
   function handleSetClick(phase) {

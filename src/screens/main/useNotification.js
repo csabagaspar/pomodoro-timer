@@ -5,8 +5,8 @@ export function useNotification() {
     Notification.requestPermission()
   }, [])
 
-  function alert() {
-    new Notification(`${title} is over!`, {})
+  function alert(text) {
+    new Notification(`${text} is over!`, {})
   }
 
   return [alert]
