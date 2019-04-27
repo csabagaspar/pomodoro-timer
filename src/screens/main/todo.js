@@ -1,39 +1,17 @@
-import React, {useReducer} from 'react'
+import React, {useContext} from 'react'
 import 'react-sortable-tree/style.css'
 import SortableTree, {changeNodeAtPath} from 'react-sortable-tree'
+import {ItemContext} from './store'
 
 export function TodoTree() {
-  const [{treeData}, setState] = useReducer(
-    (state, newState) => ({
-      ...state,
-      ...newState,
-    }),
-    {
-      treeData: [
-        {title: 'todo 1', estimated: 3, completed: 0},
-        {
-          title: 'todo 2',
-          estimated: 2,
-          completed: 0,
-          expanded: true,
-          children: [
-            {
-              title: 'todo 2.1',
-              estimated: 4,
-              completed: 0,
-            },
-          ],
-        },
-      ],
-    },
-  )
+  const [items, setItems] = useContext(ItemContext)
 
   const getNodeKey = ({treeIndex}) => treeIndex
 
   return (
     <SortableTree
-      treeData={treeData}
-      onChange={treeData => setState({treeData})}
+      treeData={items}
+      onChange={items => setItems({items})}
       generateNodeProps={({node, path}) => ({
         title: (
           <>
@@ -42,14 +20,14 @@ export function TodoTree() {
               value={node.title}
               onChange={event => {
                 const title = event.target.value
-                setState({
-                  treeData: changeNodeAtPath({
-                    treeData: treeData,
+                setItems(
+                  changeNodeAtPath({
+                    treeData: items,
                     path,
                     getNodeKey,
                     newNode: {...node, title},
                   }),
-                })
+                )
               }}
             />
             <input
@@ -58,14 +36,14 @@ export function TodoTree() {
               type="number"
               onChange={event => {
                 const estimated = event.target.value
-                setState({
-                  treeData: changeNodeAtPath({
-                    treeData: treeData,
+                setItems(
+                  changeNodeAtPath({
+                    treeData: items,
                     path,
                     getNodeKey,
                     newNode: {...node, estimated},
                   }),
-                })
+                )
               }}
             />
             <label style={{fontSize: '1.1rem'}}>{node.completed}</label>
