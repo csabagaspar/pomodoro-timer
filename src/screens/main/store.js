@@ -9,7 +9,7 @@ const defaultItems = [
   {
     title: 'todo 2',
     estimated: 2,
-    completed: 0,
+    completed: 1,
     expanded: true,
     children: [
       {

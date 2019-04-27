@@ -11,7 +11,7 @@ export function TodoTree() {
   return (
     <SortableTree
       treeData={items}
-      onChange={items => setItems({items})}
+      onChange={items => setItems(items)}
       generateNodeProps={({node, path}) => ({
         title: (
           <>
@@ -20,7 +20,7 @@ export function TodoTree() {
               value={node.title}
               onChange={event => {
                 const title = event.target.value
-                setItems(
+                setItems(items =>
                   changeNodeAtPath({
                     treeData: items,
                     path,
@@ -36,7 +36,7 @@ export function TodoTree() {
               type="number"
               onChange={event => {
                 const estimated = event.target.value
-                setItems(
+                setItems(items =>
                   changeNodeAtPath({
                     treeData: items,
                     path,
