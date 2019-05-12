@@ -1,25 +1,28 @@
 import React, {useState} from 'react'
 
-const defaultItems = [
-  {
-    title: 'todo 1',
-    estimated: 3,
-    completed: 0,
-  },
-  {
-    title: 'todo 2',
-    estimated: 2,
-    completed: 1,
-    expanded: true,
-    children: [
-      {
-        title: 'todo 2.1',
-        estimated: 4,
-        completed: 0,
-      },
-    ],
-  },
-]
+const defaultItems = {
+  treeData: [
+    {
+      title: 'todo 1',
+      estimated: 3,
+      completed: 0,
+    },
+    {
+      title: 'todo 2',
+      estimated: 2,
+      completed: 1,
+      expanded: true,
+      children: [
+        {
+          title: 'todo 2.1',
+          estimated: 4,
+          completed: 0,
+        },
+      ],
+    },
+  ],
+  addAsFirstChild: false,
+}
 
 export const ItemContext = React.createContext()
 
