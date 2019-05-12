@@ -6,7 +6,8 @@
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-scripts": "2.1.8",
-    "react-sortable-tree": "^2.6.1"
+    "react-sortable-tree": "^2.6.1",
+    "react-use": "^9.0.0"
   },
   "scripts": {
     "predeploy": "react-scripts build",

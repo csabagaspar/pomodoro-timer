@@ -63,6 +63,14 @@ export function TodoTree() {
               {!node.children && <label>"selectable"</label>}
             </>
           ),
+          subtitle: (
+            <input
+              value={node.subtitle}
+              onChange={event =>
+                update('subtitle', event.target.value, node, path)
+              }
+            />
+          ),
           buttons: [
             <button
               onClick={() =>
