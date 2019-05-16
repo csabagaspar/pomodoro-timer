@@ -5,10 +5,10 @@ import SortableTree, {
   addNodeUnderParent,
   removeNodeAtPath,
 } from 'react-sortable-tree'
-import {ItemContext} from './store'
+import {TodoListContext} from './TodoListContext'
 
 export function TodoTree() {
-  const [items, setItems] = useContext(ItemContext)
+  const [items, setItems] = useContext(TodoListContext)
 
   const getNodeKey = ({treeIndex}) => treeIndex
 

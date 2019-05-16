@@ -1,18 +1,23 @@
-import React, {useContext} from 'react'
+import React, {useState, useContext} from 'react'
 import {CountDownTimer} from './countdown'
 import {TodoTree} from './todo'
-import Store from './store'
+import {TodoListSelector} from './TodoListSelector'
+import TodoListProvider from './TodoListContext'
+import SelectionProvider from './SelectionContext'
 
 function Main() {
   return (
-    <Store>
-      <div style={{textAlign: 'center'}}>
-        <CountDownTimer />
-        <div style={{height: 400}}>
-          <TodoTree />
+    <SelectionProvider>
+      <TodoListProvider>
+        <div style={{textAlign: 'center'}}>
+          <CountDownTimer />
+          <TodoListSelector />
+          <div style={{height: 400}}>
+            <TodoTree />
+          </div>
         </div>
-      </div>
-    </Store>
+      </TodoListProvider>
+    </SelectionProvider>
   )
 }
 
