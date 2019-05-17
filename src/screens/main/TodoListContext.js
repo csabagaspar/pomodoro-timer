@@ -41,22 +41,24 @@ export const TodoListContext = React.createContext()
 export default function TodoListProvider({children}) {
   const [lists, setLists] = useLocalStorage('todo-lists', defaultTodoLists)
   const [selection, setSelection] = useContext(SelectionContext)
-  const [items, setItems] = useState(() => lists[selection.list])
+  const [activeItems, setActiveItems] = useState(() => lists[selection.list])
 
   useEffect(() => {
     setLists({
       //TODO merge professinal
       ...lists,
-      [selection.list]: [...items],
+      [selection.list]: [...activeItems],
     })
-  }, [items])
+  }, [activeItems])
 
   useEffect(() => {
-    setItems(items => [...lists[selection.list]])
+    setActiveItems(items => [...lists[selection.list]])
   }, [selection])
 
   return (
-    <TodoListContext.Provider value={[items, setItems, lists, setLists]}>
+    <TodoListContext.Provider
+      value={[activeItems, setActiveItems, lists, setLists]}
+    >
       {children}
     </TodoListContext.Provider>
   )
