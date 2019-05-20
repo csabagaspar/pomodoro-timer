@@ -6,7 +6,6 @@ import {TodoListContext} from './TodoListContext'
 export function TodoListSelector(props) {
   const [selection, setSelection] = useContext(SelectionContext)
   const [lists, setLists] = useContext(TodoListContext)
-  const [items, setItems] = useContext(ActiveContext)
 
   const todoLists = Object.keys(lists)
 
