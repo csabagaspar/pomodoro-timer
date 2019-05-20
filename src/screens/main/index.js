@@ -4,18 +4,21 @@ import {TodoTree} from './todo'
 import {TodoListSelector} from './TodoListSelector'
 import TodoListProvider from './TodoListContext'
 import SelectionProvider from './SelectionContext'
+import ActiveProvider from './ActiveContext'
 
 function Main() {
   return (
     <SelectionProvider>
       <TodoListProvider>
-        <div style={{textAlign: 'center'}}>
-          <CountDownTimer />
-          <TodoListSelector />
-          <div style={{height: 400}}>
-            <TodoTree />
+        <ActiveProvider>
+          <div style={{textAlign: 'center'}}>
+            <CountDownTimer />
+            <TodoListSelector />
+            <div style={{height: 400}}>
+              <TodoTree />
+            </div>
           </div>
-        </div>
+        </ActiveProvider>
       </TodoListProvider>
     </SelectionProvider>
   )

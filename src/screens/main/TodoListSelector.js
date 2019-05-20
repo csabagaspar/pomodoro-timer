@@ -1,11 +1,15 @@
 import React, {useContext, useState} from 'react'
 import {SelectionContext} from './SelectionContext'
+import {ActiveContext} from './ActiveContext'
 import {TodoListContext} from './TodoListContext'
 
 export function TodoListSelector(props) {
   const [selection, setSelection] = useContext(SelectionContext)
-  const [items, setItems, lists, setLists] = useContext(TodoListContext)
+  const [lists, setLists] = useContext(TodoListContext)
+  const [items, setItems] = useContext(ActiveContext)
+
   const todoLists = Object.keys(lists)
+
   const submit = e => {
     e.preventDefault()
     const {name} = e.target.elements

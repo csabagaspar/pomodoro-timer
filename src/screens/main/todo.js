@@ -5,10 +5,10 @@ import SortableTree, {
   addNodeUnderParent,
   removeNodeAtPath,
 } from 'react-sortable-tree'
-import {TodoListContext} from './TodoListContext'
+import {ActiveContext} from './ActiveContext'
 
 export function TodoTree() {
-  const [items, setItems] = useContext(TodoListContext)
+  const [items, setItems] = useContext(ActiveContext)
 
   const getNodeKey = ({treeIndex}) => treeIndex
 
@@ -41,18 +41,25 @@ export function TodoTree() {
         Add
       </button>
       <SortableTree
+        style={{
+          height: '50rem',
+        }}
         treeData={items}
         onChange={treeData => setItems(treeData)}
         generateNodeProps={({node, path}) => ({
           title: (
             <>
               <input
+                style={{}}
                 value={node.title}
                 onChange={event =>
                   update('title', event.target.value, node, path)
                 }
               />
               <input
+                style={{
+                  width: '40px',
+                }}
                 value={node.estimated}
                 type="number"
                 onChange={event =>
@@ -65,6 +72,7 @@ export function TodoTree() {
           ),
           subtitle: (
             <input
+              style={{}}
               value={node.subtitle}
               onChange={event =>
                 update('subtitle', event.target.value, node, path)
@@ -82,14 +90,16 @@ export function TodoTree() {
                       expandParent: true,
                       getNodeKey,
                       newNode: {
-                        title: `new`,
+                        title: `new title`,
+                        subtitle: `new subtitle`,
                         estimated: 0,
+                        completed: 0,
                       },
                     }).treeData,
                 )
               }
             >
-              Add Child
+              Add
             </button>,
             <button
               onClick={() =>
@@ -102,7 +112,7 @@ export function TodoTree() {
                 )
               }
             >
-              Remove
+              X
             </button>,
           ],
         })}
