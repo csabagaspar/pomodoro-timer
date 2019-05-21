@@ -83,7 +83,8 @@ export function TodoTree() {
           ),
           buttons: [
             <button
-              onClick={() =>
+              onClick={() => {
+                console.log(path, getNodeKey)
                 setItems(
                   items =>
                     addNodeUnderParent({
@@ -99,7 +100,7 @@ export function TodoTree() {
                       },
                     }).treeData,
                 )
-              }
+              }}
             >
               Add
             </button>,
@@ -118,6 +119,8 @@ export function TodoTree() {
             </button>,
             <input
               type="radio"
+              readOnly
+              checked={node.title === selection.item}
               onClick={() => {
                 setSelection(selection => ({
                   ...selection,

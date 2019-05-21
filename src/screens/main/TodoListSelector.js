@@ -33,8 +33,8 @@ export function TodoListSelector(props) {
           value={selection['list']}
           onChange={e =>
             setSelection(selection => ({
-              ...selection,
               list: e.target.value,
+              item: '',
             }))
           }
         >
