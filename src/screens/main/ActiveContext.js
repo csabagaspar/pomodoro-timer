@@ -20,8 +20,9 @@ export default function ActiveProvider({children}) {
   }, [activeItems])
 
   useEffect(() => {
+    console.log('selection changed')
     setActiveItems(items => [...lists[selection.list]])
-  }, [selection])
+  }, [selection.list, selection.item])
 
   return (
     <ActiveContext.Provider value={[activeItems, setActiveItems]}>

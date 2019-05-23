@@ -39,7 +39,7 @@ const defaultTodoLists = {
 export const TodoListContext = React.createContext()
 
 export default function TodoListProvider({children}) {
-  const [lists, setLists] = useLocalStorage('todo-lists', defaultTodoLists)
+  const [lists, setLists] = useLocalStorage('items', defaultTodoLists)
 
   return (
     <TodoListContext.Provider value={[lists, setLists]}>
