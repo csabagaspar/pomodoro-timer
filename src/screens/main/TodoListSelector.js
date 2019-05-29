@@ -1,10 +1,12 @@
 import React, {useContext, useState, useEffect} from 'react'
 import {SelectionContext} from './SelectionContext'
 import {TodoListContext} from './TodoListContext'
+import {ActiveContext} from './ActiveContext'
 
 export function TodoListSelector(props) {
   const [selection, setSelection] = useContext(SelectionContext)
   const [lists, setLists] = useContext(TodoListContext)
+  const [active, setActive] = useContext(TodoListContext)
   const [todoListName, setTodoListName] = useState('')
 
   const todoLists = Object.keys(lists)
@@ -31,16 +33,11 @@ export function TodoListSelector(props) {
       let {[selection['list']]: omit, ...rest} = lists
       return rest
     })
-  }
-
-  useEffect(() => {
-    //TODO
-    console.log(lists)
     setSelection(selection => ({
       list: Object.keys(lists)[0],
       item: '',
     }))
-  }, [lists])
+  }
 
   return (
     <div>
@@ -63,12 +60,15 @@ export function TodoListSelector(props) {
           <select
             name="list"
             value={selection['list']}
-            onChange={e =>
+            onChange={e => {
+              console.log('tar', e.target.value)
+              const listName = e.target.value
+
               setSelection(selection => ({
-                list: e.target.value,
+                list: listName,
                 item: '',
               }))
-            }
+            }}
           >
             {todoLists &&
               todoLists.map((item, index) => (
