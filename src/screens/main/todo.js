@@ -12,7 +12,7 @@ export function TodoTree() {
   const [items, setItems] = useContext(ActiveContext)
   const [selection, setSelection] = useContext(SelectionContext)
 
-  const getNodeKey = ({treeIndex}) => treeIndex
+  const getNodeKey = ({node}) => node.id
 
   const update = (field, value, node, path) => {
     setItems(items =>
@@ -32,6 +32,7 @@ export function TodoTree() {
           setItems(items => [
             ...items,
             {
+              id: Math.random(),
               title: `new title`,
               subtitle: 'new subtitle',
               estimated: 0,
@@ -47,6 +48,8 @@ export function TodoTree() {
           height: '50rem',
         }}
         treeData={items}
+        rowHeight={80}
+        getNodeKey={({node}) => node.id}
         onChange={treeData => setItems(treeData)}
         generateNodeProps={({node, path}) => ({
           title: (
@@ -93,6 +96,7 @@ export function TodoTree() {
                       expandParent: true,
                       getNodeKey,
                       newNode: {
+                        id: Math.random(),
                         title: `new title`,
                         subtitle: `new subtitle`,
                         estimated: 0,
@@ -120,11 +124,11 @@ export function TodoTree() {
             <input
               type="radio"
               readOnly
-              checked={node.title === selection.item}
+              checked={node.id === selection.item}
               onClick={() => {
                 setSelection(selection => ({
                   ...selection,
-                  item: node.title,
+                  item: node.id,
                 }))
               }}
             />,

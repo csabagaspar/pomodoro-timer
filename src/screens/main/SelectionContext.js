@@ -3,7 +3,7 @@ import useLocalStorage from 'react-use/lib/useLocalStorage'
 
 const defaultSelection = {
   list: 'list2',
-  item: 'todo1',
+  item: 4,
 }
 
 export const SelectionContext = React.createContext()

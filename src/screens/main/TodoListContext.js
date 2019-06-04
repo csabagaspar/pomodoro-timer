@@ -5,12 +5,14 @@ import {SelectionContext} from './SelectionContext'
 const defaultTodoLists = {
   list1: [
     {
+      id: 1,
       title: 'todo1',
       subtitle: 'subtitle',
       estimated: 3,
       completed: 0,
     },
     {
+      id: 2,
       title: 'todo2',
       subtitle: 'subtitle',
       estimated: 2,
@@ -18,6 +20,7 @@ const defaultTodoLists = {
       expanded: true,
       children: [
         {
+          id: 3,
           title: 'todo2.1',
           subtitle: 'subtitle',
           estimated: 4,
@@ -28,6 +31,7 @@ const defaultTodoLists = {
   ],
   list2: [
     {
+      id: 4,
       title: 'todo1',
       subtitle: 'subtitle',
       estimated: 4,
