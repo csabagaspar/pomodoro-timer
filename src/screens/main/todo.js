@@ -13,6 +13,13 @@ export function TodoTree() {
   const [selection, setSelection] = useContext(SelectionContext)
 
   const getNodeKey = ({node}) => node.id
+  const newNode = () => ({
+    id: Math.random(),
+    title: `new title`,
+    subtitle: 'new subtitle',
+    estimated: 0,
+    completed: 0,
+  })
 
   const update = (field, value, node, path) => {
     setItems(items =>
@@ -27,20 +34,7 @@ export function TodoTree() {
 
   return (
     <>
-      <button
-        onClick={() =>
-          setItems(items => [
-            ...items,
-            {
-              id: Math.random(),
-              title: `new title`,
-              subtitle: 'new subtitle',
-              estimated: 0,
-              completed: 0,
-            },
-          ])
-        }
-      >
+      <button onClick={() => setItems(items => [...items, newNode()])}>
         Add
       </button>
       <SortableTree
@@ -95,13 +89,7 @@ export function TodoTree() {
                       parentKey: path[path.length - 1],
                       expandParent: true,
                       getNodeKey,
-                      newNode: {
-                        id: Math.random(),
-                        title: `new title`,
-                        subtitle: `new subtitle`,
-                        estimated: 0,
-                        completed: 0,
-                      },
+                      newNode: newNode(),
                     }).treeData,
                 )
               }}
