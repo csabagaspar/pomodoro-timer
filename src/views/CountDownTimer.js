@@ -1,5 +1,5 @@
 import React, {useReducer, useEffect, useRef} from 'react'
-import {useNotification} from './useNotification'
+import {useNotification} from '../utils/useNotification'
 
 const buttonStyles = {
   border: '1px solid #ccc',
@@ -26,6 +26,7 @@ const phases = {
 
 export function CountDownTimer() {
   const [alert] = useNotification()
+
   const [{seconds, title, running}, setState] = useReducer(
     (state, newState) => ({
       ...state,

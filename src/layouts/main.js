@@ -1,10 +1,11 @@
 import React, {useState, useContext} from 'react'
-import {CountDownTimer} from './countdown'
-import {TodoTree} from './todo'
-import {TodoListSelector} from './TodoListSelector'
-import TodoListProvider from './TodoListContext'
-import SelectionProvider from './SelectionContext'
-import ActiveProvider from './ActiveContext'
+import {CountDownTimer} from '../views/CountDownTimer'
+import {TodoTree} from '../views/TodoTree'
+import {TodoListSelector} from '../views/TodoListSelector'
+
+import TodoListProvider from '../contexts/TodoListContext'
+import SelectionProvider from '../contexts/SelectionContext'
+import ActiveProvider from '../contexts/ActiveContext'
 
 function Main() {
   return (

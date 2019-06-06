@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import * as serviceWorker from './serviceWorker'
-import Main from './screens/main'
+import Main from './layouts/main'
 
 function App() {
   return <Main />

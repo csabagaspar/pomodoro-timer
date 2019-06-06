@@ -5,8 +5,8 @@ import SortableTree, {
   addNodeUnderParent,
   removeNodeAtPath,
 } from 'react-sortable-tree'
-import {ActiveContext} from './ActiveContext'
-import {SelectionContext} from './SelectionContext'
+import {ActiveContext} from '../contexts/ActiveContext'
+import {SelectionContext} from '../contexts/SelectionContext'
 
 export function TodoTree() {
   const [items, setItems] = useContext(ActiveContext)
