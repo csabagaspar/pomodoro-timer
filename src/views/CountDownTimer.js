@@ -1,5 +1,6 @@
 import React, {useReducer, useEffect, useRef} from 'react'
 import {useNotification} from '../utils/useNotification'
+import {useTimeout} from '../utils/useTimeout'
 
 const buttonStyles = {
   border: '1px solid #ccc',
@@ -11,7 +12,8 @@ const buttonStyles = {
 }
 const phases = {
   pomodoro: {
-    seconds: 25 * 60,
+    //seconds: 25 * 60,
+    seconds: 2 * 1,
     title: 'Pomodoro',
   },
   'short-break': {
@@ -26,6 +28,7 @@ const phases = {
 
 export function CountDownTimer() {
   const [alert] = useNotification()
+  const {update} = useTimeout()
 
   const [{seconds, title, running}, setState] = useReducer(
     (state, newState) => ({
@@ -66,6 +69,7 @@ export function CountDownTimer() {
         if (currentTime === 0) {
           clearInterval(timerRef.current)
           alert(title)
+          update()
         } else {
           setState({seconds: --currentTime})
         }
