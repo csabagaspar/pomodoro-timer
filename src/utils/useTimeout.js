@@ -2,7 +2,7 @@ import {useContext} from 'react'
 import {TodoListContext} from '../contexts/TodoListContext'
 import {SelectionContext} from '../contexts/SelectionContext'
 
-import SortableTree, {find} from 'react-sortable-tree'
+import {find, changeNodeAtPath} from 'react-sortable-tree'
 export function useTimeout() {
   const [selection, setSelection] = useContext(SelectionContext)
   const [lists, setLists] = useContext(TodoListContext)
@@ -21,10 +21,16 @@ export function useTimeout() {
       treeData: treeData,
       searchMethod: item => item.node.id === selectedItem,
     })
-
+    const matches = result.matches[0]
+    const modifiedTreeData = changeNodeAtPath({
+      treeData,
+      path: matches.path,
+      getNodeKey,
+      newNode: {...matches.node, completed: matches.node.completed + 1},
+    })
     setLists(lists => ({
       ...lists,
-      //[selection['list']]: lists['list'] //TODO
+      [selection['list']]: modifiedTreeData,
     }))
   }
 
