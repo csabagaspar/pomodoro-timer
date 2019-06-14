@@ -1,7 +1,6 @@
 import React, {useContext, useState, useEffect} from 'react'
 import {SelectionContext} from '../contexts/SelectionContext'
 import {TodoListContext} from '../contexts/TodoListContext'
-import {ActiveContext} from '../contexts/ActiveContext'
 
 export function TodoListSelector(props) {
   const [selection, setSelection] = useContext(SelectionContext)

@@ -9,10 +9,10 @@ export const ActiveContext = React.createContext()
 export default function ActiveProvider({children}) {
   const [lists, setLists] = useContext(TodoListContext)
   const [selection, setSelection] = useContext(SelectionContext)
-
   const [activeItems, setActiveItems] = useState(() => lists[selection.list])
 
   useEffect(() => {
+    console.log('activeItems', activeItems)
     setLists({
       //TODO merge professinal
       ...lists,
