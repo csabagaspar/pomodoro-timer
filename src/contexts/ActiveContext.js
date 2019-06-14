@@ -12,7 +12,6 @@ export default function ActiveProvider({children}) {
   const [activeItems, setActiveItems] = useState(() => lists[selection.list])
 
   useEffect(() => {
-    console.log('activeItems', activeItems)
     setLists({
       //TODO merge professinal
       ...lists,
@@ -21,7 +20,6 @@ export default function ActiveProvider({children}) {
   }, [activeItems])
 
   useEffect(() => {
-    console.log('selection changed')
     setActiveItems(items => [...lists[selection.list]])
   }, [selection.list, selection.item])
 
