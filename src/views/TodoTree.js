@@ -81,7 +81,6 @@ export function TodoTree() {
           buttons: [
             <button
               onClick={() => {
-                console.log(path, getNodeKey)
                 setItems(
                   items =>
                     addNodeUnderParent({

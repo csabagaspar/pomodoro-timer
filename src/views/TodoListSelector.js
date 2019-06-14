@@ -60,7 +60,6 @@ export function TodoListSelector(props) {
             name="list"
             value={selection['list']}
             onChange={e => {
-              console.log('tar', e.target.value)
               const listName = e.target.value
 
               setSelection(selection => ({
