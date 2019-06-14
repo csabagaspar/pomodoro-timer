@@ -7,6 +7,7 @@ import SortableTree, {
 } from 'react-sortable-tree'
 import {ActiveContext} from '../contexts/ActiveContext'
 import {SelectionContext} from '../contexts/SelectionContext'
+import FileExplorerTheme from 'react-sortable-tree-theme-minimal'
 
 export function TodoTree() {
   const [items, setItems] = useContext(ActiveContext)
@@ -43,6 +44,7 @@ export function TodoTree() {
         }}
         treeData={items}
         rowHeight={80}
+        theme={FileExplorerTheme}
         getNodeKey={({node}) => node.id}
         onChange={treeData => setItems(treeData)}
         generateNodeProps={({node, path}) => ({

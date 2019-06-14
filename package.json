@@ -7,6 +7,7 @@
     "react-dom": "^16.8.4",
     "react-scripts": "2.1.8",
     "react-sortable-tree": "^2.6.1",
+    "react-sortable-tree-theme-minimal": "^0.0.14",
     "react-use": "^9.0.0"
   },
   "scripts": {
