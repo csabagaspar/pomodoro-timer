@@ -12,7 +12,8 @@ const buttonStyles = {
 }
 const phases = {
   pomodoro: {
-    seconds: 25 * 60,
+    //seconds: 25 * 60,
+    seconds: 5 * 1,
     title: 'Pomodoro',
   },
   'short-break': {
@@ -68,7 +69,9 @@ export function CountDownTimer() {
         if (currentTime === 0) {
           clearInterval(timerRef.current)
           alert(title)
-          update()
+          if (title === 'Pomodoro') {
+            update()
+          }
         } else {
           setState({seconds: --currentTime})
         }
