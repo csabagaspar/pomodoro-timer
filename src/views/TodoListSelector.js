@@ -28,18 +28,13 @@ export function TodoListSelector(props) {
       return
     }
 
-    setLists(lists => {
-      let {[selection['list']]: omit, ...rest} = lists
-      return rest
-    })
-  }
-
-  useEffect(() => {
+    let {[selection['list']]: omit, ...rest} = lists
+    setLists(lists => rest)
     setSelection(selection => ({
-      list: Object.keys(lists)[0],
+      list: Object.keys(rest)[0],
       item: '',
     }))
-  }, [lists])
+  }
 
   return (
     <div>
@@ -64,7 +59,6 @@ export function TodoListSelector(props) {
             value={selection['list']}
             onChange={e => {
               const listName = e.target.value
-
               setSelection(selection => ({
                 list: listName,
                 item: '',
