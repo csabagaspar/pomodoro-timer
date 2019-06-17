@@ -12,8 +12,7 @@ const buttonStyles = {
 }
 const phases = {
   pomodoro: {
-    //seconds: 25 * 60,
-    seconds: 5 * 1,
+    seconds: 25 * 60,
     title: 'Pomodoro',
   },
   'short-break': {
