@@ -11,6 +11,8 @@ export function useTimeout() {
 
   function update() {
     const selectedItem = selection.item
+    if (!selectedItem) return
+
     const result = find({
       getNodeKey: getNodeKey,
       treeData: activeList,

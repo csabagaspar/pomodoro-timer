@@ -17,7 +17,7 @@ export function TodoTree() {
   const newNode = () => ({
     id: Math.random(),
     title: `new title`,
-    subtitle: 'new subtitle',
+    subtitle: 'new details',
     estimated: 0,
     completed: 0,
   })
@@ -43,7 +43,7 @@ export function TodoTree() {
           height: '50rem',
         }}
         treeData={items}
-        rowHeight={80}
+        rowHeight={150}
         theme={FileExplorerTheme}
         getNodeKey={({node}) => node.id}
         onChange={treeData => setItems(treeData)}
@@ -51,7 +51,9 @@ export function TodoTree() {
           title: (
             <>
               <input
-                style={{}}
+                style={{
+                  width: '90%',
+                }}
                 value={node.title}
                 onChange={event =>
                   update('title', event.target.value, node, path)
@@ -68,12 +70,13 @@ export function TodoTree() {
                 }
               />
               <label>{node.completed}</label>
-              {!node.children && <label>"selectable"</label>}
             </>
           ),
           subtitle: (
-            <input
+            <textarea
               style={{}}
+              rows={5}
+              cols={60}
               value={node.subtitle}
               onChange={event =>
                 update('subtitle', event.target.value, node, path)

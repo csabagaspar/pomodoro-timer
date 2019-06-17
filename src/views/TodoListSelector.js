@@ -32,11 +32,14 @@ export function TodoListSelector(props) {
       let {[selection['list']]: omit, ...rest} = lists
       return rest
     })
+  }
+
+  useEffect(() => {
     setSelection(selection => ({
       list: Object.keys(lists)[0],
       item: '',
     }))
-  }
+  }, [lists])
 
   return (
     <div>
