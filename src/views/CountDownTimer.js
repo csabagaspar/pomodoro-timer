@@ -63,29 +63,37 @@ export function CountDownTimer() {
     } else {
       let currentTime = seconds - 1
       setState({seconds: currentTime})
-
-      timerRef.current = setInterval(() => {
-        if (currentTime === 0) {
-          clearInterval(timerRef.current)
-          alert(title)
-          if (title === 'Pomodoro') {
-            update()
-          }
-        } else {
-          setState({seconds: --currentTime})
-        }
-      }, 1000)
+      createInterval(currentTime)
     }
     setState({running: !running})
   }
 
   function handleSetClick(phase) {
     clearInterval(timerRef.current)
+    let currentTime = phase.seconds - 1
+
     setState({
-      seconds: phase.seconds,
+      seconds: currentTime,
       title: phase.title,
       running: false,
     })
+
+    createInterval(currentTime)
+    setState({running: true})
+  }
+
+  const createInterval = currentTime => {
+    timerRef.current = setInterval(() => {
+      if (currentTime === 0) {
+        clearInterval(timerRef.current)
+        alert(title)
+        if (title === 'Pomodoro') {
+          update()
+        }
+      } else {
+        setState({seconds: --currentTime})
+      }
+    }, 1000)
   }
 
   function format(seconds) {
