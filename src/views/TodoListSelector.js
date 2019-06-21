@@ -1,16 +1,18 @@
-import React, {useContext, useState, useEffect} from 'react'
-import {SelectionContext} from '../contexts/SelectionContext'
-import {TodoListContext} from '../contexts/TodoListContext'
+import React, {useContext, useState} from 'react'
+import {ListsContext} from '../contexts/ListsContext'
+import {ActiveListContext} from '../contexts/ActiveListContext'
+import {ActiveListNameContext} from '../contexts/ActiveListNameContext'
 
 export function TodoListSelector(props) {
-  const [selection, setSelection] = useContext(SelectionContext)
-  const [lists, setLists] = useContext(TodoListContext)
-  const [active, setActive] = useContext(TodoListContext)
+  const [lists, setLists] = useContext(ListsContext)
+  const [activeList, setActiveList] = useContext(ActiveListContext)
+  const [activeListName, setActiveListName] = useContext(ActiveListNameContext)
+
   const [todoListName, setTodoListName] = useState('')
 
   const todoLists = Object.keys(lists)
 
-  const submit = e => {
+  const handleAdd = e => {
     e.preventDefault()
     if (!todoListName) return
 
@@ -21,25 +23,29 @@ export function TodoListSelector(props) {
     setTodoListName('')
   }
 
+  const handleChange = ({target: {value}}) => {
+    setActiveListName(value)
+    setActiveList(lists[value])
+  }
+
   const handleRemove = e => {
     e.preventDefault()
+
     if (Object.keys(lists).length === 1) {
       alert('cannot remove last list')
       return
     }
 
-    let {[selection['list']]: omit, ...rest} = lists
+    let {[activeListName]: omit, ...rest} = lists
     setLists(lists => rest)
-    setSelection(selection => ({
-      list: Object.keys(rest)[0],
-      item: '',
-    }))
+    setActiveList(lists[Object.keys(rest)[0]])
+    setActiveListName(Object.keys(rest)[0])
   }
 
   return (
     <div>
       <div>
-        <form onSubmit={submit}>
+        <form onSubmit={handleAdd}>
           <label htmlFor="name-id">Add new list</label>
           <input
             name="name"
@@ -54,17 +60,7 @@ export function TodoListSelector(props) {
       <div>
         <form onSubmit={handleRemove}>
           <label htmlFor="name-id">Remove a list</label>
-          <select
-            name="list"
-            value={selection['list']}
-            onChange={e => {
-              const listName = e.target.value
-              setSelection(selection => ({
-                list: listName,
-                item: '',
-              }))
-            }}
-          >
+          <select name="list" value={activeListName} onChange={handleChange}>
             {todoLists &&
               todoLists.map((item, index) => (
                 <option key={index} value={item}>

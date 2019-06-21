@@ -1,8 +1,7 @@
 import React, {useState, useContext, useEffect} from 'react'
 import useLocalStorage from 'react-use/lib/useLocalStorage'
-import {SelectionContext} from './SelectionContext'
 
-const defaultTodoLists = {
+const defaultLists = {
   list1: [
     {
       id: 1,
@@ -40,14 +39,14 @@ const defaultTodoLists = {
   ],
 }
 
-export const TodoListContext = React.createContext()
+export const ListsContext = React.createContext()
 
-export default function TodoListProvider({children}) {
-  const [lists, setLists] = useLocalStorage('items', defaultTodoLists)
+export default function ListsProvider({children}) {
+  const [lists, setLists] = useLocalStorage('items', defaultLists)
 
   return (
-    <TodoListContext.Provider value={[lists, setLists]}>
+    <ListsContext.Provider value={[lists, setLists]}>
       {children}
-    </TodoListContext.Provider>
+    </ListsContext.Provider>
   )
 }

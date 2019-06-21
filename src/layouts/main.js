@@ -3,25 +3,28 @@ import {CountDownTimer} from '../views/CountDownTimer'
 import {TodoTree} from '../views/TodoTree'
 import {TodoListSelector} from '../views/TodoListSelector'
 
-import TodoListProvider from '../contexts/TodoListContext'
-import SelectionProvider from '../contexts/SelectionContext'
-import ActiveProvider from '../contexts/ActiveContext'
+import ListsProvider from '../contexts/ListsContext'
+import ActiveListProvider from '../contexts/ActiveListContext'
+import ActiveListNameProvider from '../contexts/ActiveListNameContext'
+import ActiveItemIdProvider from '../contexts/ActiveItemIdContext'
 
 function Main() {
   return (
-    <SelectionProvider>
-      <TodoListProvider>
-        <ActiveProvider>
-          <div style={{textAlign: 'center'}}>
-            <CountDownTimer />
-            <TodoListSelector />
-            <div style={{height: 400}}>
-              <TodoTree />
+    <ActiveListNameProvider>
+      <ActiveItemIdProvider>
+        <ListsProvider>
+          <ActiveListProvider>
+            <div style={{textAlign: 'center'}}>
+              <CountDownTimer />
+              <TodoListSelector />
+              <div style={{height: 400}}>
+                <TodoTree />
+              </div>
             </div>
-          </div>
-        </ActiveProvider>
-      </TodoListProvider>
-    </SelectionProvider>
+          </ActiveListProvider>
+        </ListsProvider>
+      </ActiveItemIdProvider>
+    </ActiveListNameProvider>
   )
 }
 
