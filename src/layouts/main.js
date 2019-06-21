@@ -6,12 +6,12 @@ import {TodoListSelector} from '../views/TodoListSelector'
 import ListsProvider from '../contexts/ListsContext'
 import ActiveListProvider from '../contexts/ActiveListContext'
 import ActiveListNameProvider from '../contexts/ActiveListNameContext'
-import ActiveItemIdProvider from '../contexts/ActiveItemIdContext'
+import ActiveListItemIdProvider from '../contexts/ActiveListItemIdContext'
 
 function Main() {
   return (
     <ActiveListNameProvider>
-      <ActiveItemIdProvider>
+      <ActiveListItemIdProvider>
         <ListsProvider>
           <ActiveListProvider>
             <div style={{textAlign: 'center'}}>
@@ -23,7 +23,7 @@ function Main() {
             </div>
           </ActiveListProvider>
         </ListsProvider>
-      </ActiveItemIdProvider>
+      </ActiveListItemIdProvider>
     </ActiveListNameProvider>
   )
 }

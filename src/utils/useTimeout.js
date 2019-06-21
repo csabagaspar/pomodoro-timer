@@ -1,17 +1,19 @@
 import {useContext} from 'react'
 import {ActiveListContext} from '../contexts/ActiveListContext'
-import {ActiveItemIdContext} from '../contexts/ActiveItemIdContext'
+import {ActiveListItemIdContext} from '../contexts/ActiveListItemIdContext'
 
 import {find, changeNodeAtPath} from 'react-sortable-tree'
 
 export function useTimeout() {
-  const [activeItemId, setActiveItemId] = useContext(ActiveItemIdContext)
+  const [activeListItemId, setActiveListItemId] = useContext(
+    ActiveListItemIdContext,
+  )
   const [activeList, setActiveList] = useContext(ActiveListContext)
 
   const getNodeKey = ({node}) => node.id
 
   function update() {
-    const selectedItem = activeItemId
+    const selectedItem = activeListItemId
     if (!selectedItem) return
 
     const result = find({

@@ -6,12 +6,14 @@ import SortableTree, {
   removeNodeAtPath,
 } from 'react-sortable-tree'
 import {ActiveListContext} from '../contexts/ActiveListContext'
-import {ActiveItemIdContext} from '../contexts/ActiveItemIdContext'
+import {ActiveListItemIdContext} from '../contexts/ActiveListItemIdContext'
 import FileExplorerTheme from 'react-sortable-tree-theme-minimal'
 
 export function TodoTree() {
   const [items, setItems] = useContext(ActiveListContext)
-  const [activeItemId, setActiveItemId] = useContext(ActiveItemIdContext)
+  const [activeListItemId, setActiveListItemId] = useContext(
+    ActiveListItemIdContext,
+  )
 
   console.log('activeListintodotree', items)
 
@@ -118,8 +120,8 @@ export function TodoTree() {
             <input
               type="radio"
               readOnly
-              checked={node.id === activeItemId}
-              onClick={() => setActiveItemId(node.id)}
+              checked={node.id === activeListItemId}
+              onClick={() => setActiveListItemId(node.id)}
             />,
           ],
         })}
