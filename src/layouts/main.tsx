@@ -8,7 +8,8 @@ import ActiveListProvider from '../contexts/ActiveListContext'
 import ActiveListNameProvider from '../contexts/ActiveListNameContext'
 import ActiveListItemIdProvider from '../contexts/ActiveListItemIdContext'
 
-function Main() {
+
+export default function Main(){
   return (
     <ActiveListNameProvider>
       <ActiveListItemIdProvider>
@@ -28,4 +29,3 @@ function Main() {
   )
 }
 
-export default Main

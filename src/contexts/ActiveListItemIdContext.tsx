@@ -3,10 +3,15 @@ import useLocalStorage from 'react-use/lib/useLocalStorage'
 
 const defaultActiveListItemId = 4
 
-export const ActiveListItemIdContext = React.createContext()
 
-export default function ActiveListItemIdProvider({children}) {
-  const [activeListItemId, setActiveListItemId] = useLocalStorage(
+type ActiveListItemType = [
+  number,
+  (value: number) => void
+] |[]
+export const ActiveListItemIdContext = React.createContext<ActiveListItemType>([])
+
+const ActiveListItemIdProvider: React.FC<{}> = ({children}) => {
+  const [activeListItemId, setActiveListItemId] = useLocalStorage<number>(
     'activeListItemId',
     defaultActiveListItemId,
   )
@@ -18,3 +23,4 @@ export default function ActiveListItemIdProvider({children}) {
     </ActiveListItemIdContext.Provider>
   )
 }
+export default ActiveListItemIdProvider

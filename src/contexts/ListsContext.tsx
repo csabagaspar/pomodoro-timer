@@ -38,11 +38,22 @@ const defaultLists = {
     },
   ],
 }
+type StringKeyRecordType = Record<keyof any, any>[]
+ type ListType =
+    Record<keyof any, any | StringKeyRecordType >[]
 
-export const ListsContext = React.createContext()
+type ListsType =  Record<keyof any, ListType>
 
-export default function ListsProvider({children}) {
-  const [lists, setLists] = useLocalStorage('items', defaultLists)
+type ListsContextType = [
+  ListsType,
+  React.Dispatch<React.SetStateAction<ListsType>>
+] | []
+
+
+export const ListsContext = React.createContext<ListsContextType>([])
+
+const ListsProvider: React.FC<{}> = ({children}) => {
+  const [lists, setLists] = useLocalStorage<ListsType>('items', defaultLists)
 
   return (
     <ListsContext.Provider value={[lists, setLists]}>
@@ -50,3 +61,4 @@ export default function ListsProvider({children}) {
     </ListsContext.Provider>
   )
 }
+export default ListsProvider

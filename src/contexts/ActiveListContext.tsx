@@ -4,13 +4,24 @@ import useLocalStorage from 'react-use/lib/useLocalStorage'
 import {ActiveListNameContext} from './ActiveListNameContext'
 import {ListsContext} from './ListsContext'
 
-export const ActiveListContext = React.createContext()
+type StringKeyRecordType = Record<keyof any, any>[]
+ type ListType =
+    Record<keyof any, any | StringKeyRecordType >[]
 
-export default function ActiveListProvider({children}) {
+type ActiveListType  = [
+  ListType,
+  (value: ListType |  ((prevState: ListType) => ListType)) => void
+] | []
+
+
+export const ActiveListContext = React.createContext<ActiveListType>([])
+
+
+const ActiveListProvider: React.FC<{}> = ({children}) => {
   const [lists, setLists] = useContext(ListsContext)
   const [activeListName, setActiveListName] = useContext(ActiveListNameContext)
 
-  const [activeList, setActiveList] = useState(() => lists[activeListName])
+  const [activeList, setActiveList] = useState<ListType>(() => lists[activeListName])
 
   useEffect(() => {
     setLists({
@@ -25,3 +36,4 @@ export default function ActiveListProvider({children}) {
     </ActiveListContext.Provider>
   )
 }
+export default ActiveListProvider
