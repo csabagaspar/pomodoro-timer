@@ -6,7 +6,6 @@ import Main from './layouts/main'
 function App() {
   return <Main />
 }
-console.log('pub', process.env.PUBLIC_URL)
 
 ReactDOM.render(<App />, document.getElementById('root'))
 

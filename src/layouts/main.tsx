@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react'
+import React from 'react'
 import {CountDownTimer} from '../views/CountDownTimer'
 import {TodoTree} from '../views/TodoTree'
 import {TodoListSelector} from '../views/TodoListSelector'

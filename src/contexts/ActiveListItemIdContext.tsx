@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import useLocalStorage from 'react-use/lib/useLocalStorage'
 
 const defaultActiveListItemId = 4

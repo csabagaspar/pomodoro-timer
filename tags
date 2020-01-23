@@ -1,0 +1,57 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+ActiveListContext	src/contexts/ActiveListContext.tsx	/^export const ActiveListContext = React.createContext<ActiveListType>([])$/;"	v
+ActiveListItemIdContext	src/contexts/ActiveListItemIdContext.tsx	/^export const ActiveListItemIdContext = React.createContext<ActiveListItemType>([])$/;"	v
+ActiveListItemIdProvider	src/layouts/main.tsx	/^import ActiveListItemIdProvider from '..\/contexts\/ActiveListItemIdContext'$/;"	I
+ActiveListItemType	src/contexts/ActiveListItemIdContext.tsx	/^type ActiveListItemType = [$/;"	t
+ActiveListNameContext	src/contexts/ActiveListNameContext.tsx	/^export const ActiveListNameContext = React.createContext<$/;"	v
+ActiveListNameProvider	src/layouts/main.tsx	/^import ActiveListNameProvider from '..\/contexts\/ActiveListNameContext'$/;"	I
+ActiveListNameType	src/contexts/ActiveListNameContext.tsx	/^type ActiveListNameType = [$/;"	t
+ActiveListProvider	src/layouts/main.tsx	/^import ActiveListProvider from '..\/contexts\/ActiveListContext'$/;"	I
+ActiveListType	src/contexts/ActiveListContext.tsx	/^type ActiveListType  = [$/;"	t
+App	src/index.tsx	/^function App() {$/;"	f
+Config	src/serviceWorker.ts	/^type Config = {$/;"	t
+CountDownTimer	src/views/CountDownTimer.tsx	/^export function CountDownTimer() {$/;"	f
+FileExplorerTheme	src/views/TodoTree.tsx	/^import FileExplorerTheme from 'react-sortable-tree-theme-minimal'$/;"	I
+ListType	src/contexts/ActiveListContext.tsx	/^ type ListType =$/;"	t
+ListType	src/contexts/ListsContext.tsx	/^ type ListType =$/;"	t
+ListsContext	src/contexts/ListsContext.tsx	/^export const ListsContext = React.createContext<ListsContextType>([])$/;"	v
+ListsContextType	src/contexts/ListsContext.tsx	/^type ListsContextType = [$/;"	t
+ListsProvider	src/layouts/main.tsx	/^import ListsProvider from '..\/contexts\/ListsContext'$/;"	I
+ListsType	src/contexts/ListsContext.tsx	/^type ListsType =  Record<keyof any, ListType>$/;"	t
+Main	src/index.tsx	/^import Main from '.\/layouts\/main'$/;"	I
+Main	src/layouts/main.tsx	/^export default function Main(){$/;"	f
+React	src/contexts/ActiveListContext.tsx	/^import React, {useState, useContext, useEffect} from 'react'$/;"	I
+React	src/contexts/ActiveListItemIdContext.tsx	/^import React from 'react'$/;"	I
+React	src/contexts/ActiveListNameContext.tsx	/^import React from 'react'$/;"	I
+React	src/contexts/ListsContext.tsx	/^import React, {useState, useContext, useEffect} from 'react'$/;"	I
+React	src/index.tsx	/^import React from 'react'$/;"	I
+React	src/layouts/main.tsx	/^import React from 'react'$/;"	I
+React	src/views/CountDownTimer.tsx	/^import React, {useReducer, useEffect, useRef} from 'react'$/;"	I
+React	src/views/TodoListSelector.tsx	/^import React, {useContext, useState} from 'react'$/;"	I
+React	src/views/TodoTree.tsx	/^import React, {useContext} from 'react'$/;"	I
+ReactDOM	src/index.tsx	/^import ReactDOM from 'react-dom'$/;"	I
+SortableTree	src/views/TodoTree.tsx	/^import SortableTree, {$/;"	I
+StringKeyRecordType	src/contexts/ActiveListContext.tsx	/^type StringKeyRecordType = Record<keyof any, any>[]$/;"	t
+StringKeyRecordType	src/contexts/ListsContext.tsx	/^type StringKeyRecordType = Record<keyof any, any>[]$/;"	t
+TodoListSelector	src/views/TodoListSelector.tsx	/^export function TodoListSelector(props) {$/;"	f
+TodoTree	src/views/TodoTree.tsx	/^export function TodoTree() {$/;"	f
+alert	src/utils/useNotification.tsx	/^  function alert(text: string): void {$/;"	f
+checkValidServiceWorker	src/serviceWorker.ts	/^function checkValidServiceWorker(swUrl: string, config?: Config) {$/;"	f
+format	src/views/CountDownTimer.tsx	/^  function format(seconds) {$/;"	f
+handleRunClick	src/views/CountDownTimer.tsx	/^  function handleRunClick() {$/;"	f
+handleSetClick	src/views/CountDownTimer.tsx	/^  function handleSetClick(phase) {$/;"	f
+register	src/serviceWorker.ts	/^export function register(config?: Config) {$/;"	f
+registerValidSW	src/serviceWorker.ts	/^function registerValidSW(swUrl: string, config?: Config) {$/;"	f
+unregister	src/serviceWorker.ts	/^export function unregister() {$/;"	f
+update	src/utils/useTimeout.tsx	/^  function update() {$/;"	f
+useLocalStorage	src/contexts/ActiveListContext.tsx	/^import useLocalStorage from 'react-use\/lib\/useLocalStorage'$/;"	I
+useLocalStorage	src/contexts/ActiveListItemIdContext.tsx	/^import useLocalStorage from 'react-use\/lib\/useLocalStorage'$/;"	I
+useLocalStorage	src/contexts/ActiveListNameContext.tsx	/^import useLocalStorage from 'react-use\/lib\/useLocalStorage'$/;"	I
+useLocalStorage	src/contexts/ListsContext.tsx	/^import useLocalStorage from 'react-use\/lib\/useLocalStorage'$/;"	I
+useNotification	src/utils/useNotification.tsx	/^export function useNotification(): [(value: string) => void] {$/;"	f
+useTimeout	src/utils/useTimeout.tsx	/^export function useTimeout() {$/;"	f
