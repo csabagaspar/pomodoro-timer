@@ -1,5 +1,4 @@
 import React, {useState, useContext, useEffect} from 'react'
-import useLocalStorage from 'react-use/lib/useLocalStorage'
 
 import {ActiveListNameContext} from './ActiveListNameContext'
 import {ListsContext} from './ListsContext'

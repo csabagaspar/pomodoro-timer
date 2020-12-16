@@ -15,8 +15,6 @@ export function TodoTree() {
     ActiveListItemIdContext,
   )
 
-  console.log('activeListintodotree', items)
-
   const getNodeKey = ({node}) => node.id
   const newNode = () => ({
     id: Math.random(),
